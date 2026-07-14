@@ -151,9 +151,26 @@ export const AuthProvider = ({ children }) => {
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
+
+  // Fallback: se não estiver dentro do AuthProvider, retorna um mock
+  // para não quebrar o app durante a migração
   if (!context) {
-    throw new Error('useAuth deve ser usado dentro de AuthProvider');
+    console.warn('[useAuth] Usado fora do AuthProvider - retornando fallback');
+    return {
+      usuario: null,
+      tenant: null,
+      loading: false,
+      error: null,
+      login: async () => ({ success: false, error: 'Provider não disponível' }),
+      logout: async () => ({ success: false }),
+      updateSession: () => ({ success: false }),
+      pode: () => false,
+      isAdmin: false,
+      isPrimeiroAcesso: false,
+      isAuthenticated: false
+    };
   }
+
   return context;
 };
 
