@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%; 
+  --foreground: 222.2 84% 4.9%; 
+
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+
+  --primary: 221.2 83.2% 53.3%; 
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 210 40% 96.1%; 
+  --secondary-foreground: 222.2 47.4% 11.2%;
+
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%; 
+
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+
+  --destructive: 0 84.2% 60.2%; 
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
+
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 224 71.4% 4.1%; /* Darker, less saturated blue-black */
+  --foreground: 210 20% 90.1%; /* Brighter, slightly less saturated white */
+
+  --card: 224 71.4% 6.1%; /* Slightly lighter than background for depth */
+  --card-foreground: 210 20% 88.1%; 
+  --popover: 224 71.4% 6.1%;
+  --popover-foreground: 210 20% 88.1%;
+
+  --primary: 217.2 91.2% 59.8%; 
+  --primary-foreground: 222.2 47.4% 11.2%; 
+
+  --secondary: 224 71.4% 10.1%; /* Darker secondary for better contrast */
+  --secondary-foreground: 210 20% 85.1%;
+
+  --muted: 224 71.4% 10.1%;
+  --muted-foreground: 215 20.2% 60.1%; /* Lighter muted for readability */
+
+  --accent: 224 71.4% 10.1%;
+  --accent-foreground: 210 20% 92.1%;
+
+  --destructive: 0 72.2% 50.6%; 
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 217.2 32.6% 22.5%; /* Slightly darker border */
+  --input: 224 71.4% 8.1%; /* Input field background */
+  --ring: 217.2 91.2% 59.8%;
+}
+
+
+* {
+  border-color: hsl(var(--border));
+  box-sizing: border-box; 
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; 
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-content-area {
+  width: 100%;
+  padding-left: 0.5rem; /* Reduced padding for mobile */
+  padding-right: 0.5rem; /* Reduced padding for mobile */
+}
+
+@media (min-width: 640px) { /* sm breakpoint */
+  .main-content-area {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+
+/* Ajustes de padding-top para diferentes headers */
+.main-content-area.pt-admin-header { /* Para PainelAdministrador */
+  padding-top: 90px; 
+}
+@media (min-width: 768px) { /* md breakpoint */
+  .main-content-area.pt-admin-header {
+    padding-top: 80px; 
+  }
+}
+
+.main-content-area.pt-operador-header { /* Para PainelOperador (login/senha) */
+  padding-top: 80px; 
+}
+@media (min-width: 768px) { /* md breakpoint */
+  .main-content-area.pt-operador-header {
+    padding-top: 70px; 
+  }
+}
+
+.main-content-area.pt-app-header { /* Para tela de seleção e outros com header simples do App */
+  padding-top: 60px; 
+}
+@media (min-width: 768px) { /* md breakpoint */
+  .main-content-area.pt-app-header {
+    padding-top: 50px; 
+  }
+}
+
+
+.mercedes-gradient {
+  background: linear-gradient(135deg, hsl(210, 25%, 98%) 0%, hsl(210, 30%, 96%) 50%, hsl(210, 25%, 98%) 100%);
+}
+
+.dark .mercedes-gradient {
+   background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--background) / 0.95) 50%, hsl(var(--background)) 100%);
+}
+
+.mercedes-gradient .text-white { 
+  color: hsl(var(--foreground)); 
+}
+.mercedes-gradient .text-gray-300 { 
+  color: hsl(var(--muted-foreground)); 
+}
+
+.dark .mercedes-gradient .text-white, 
+.dark .mercedes-gradient .text-gray-300,
+.dark .mercedes-gradient .text-gray-400 {
+  color: hsl(var(--foreground)); 
+}
+.dark .mercedes-gradient .text-xl.text-gray-300.dark\\:text-gray-400 {
+  color: hsl(var(--muted-foreground)) !important; 
+}
+
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.75); 
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  border: 1px solid rgba(200, 200, 200, 0.25);
+  border-radius: var(--radius);
+}
+
+.glass-effect .text-white,
+.glass-effect .text-gray-300 {
+  color: hsl(var(--foreground)); 
+}
+
+.dark .glass-effect {
+  background: hsl(var(--card) / 0.75); 
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid hsl(var(--border) / 0.5);
+}
+
+.dark .glass-effect .text-white,
+.dark .glass-effect .text-gray-300,
+.dark .glass-effect .text-gray-400 {
+   color: hsl(var(--foreground)); 
+}
+
+
+.admin-panel { 
+  background: linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--muted)) 100%);
+}
+
+.dark .admin-panel { 
+   background: linear-gradient(135deg, hsl(var(--background) / 0.9) 0%, hsl(var(--background)) 100%);
+}
+
+input, textarea, select {
+  background-color: hsl(var(--input));
+  color: hsl(var(--foreground));
+  border-color: hsl(var(--border));
+}
+.dark input, .dark textarea, .dark select {
+  background-color: hsl(var(--input));
+  color: hsl(var(--foreground));
+  border-color: hsl(var(--border));
+}
+
+input::placeholder, textarea::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+.dark input::placeholder, .dark textarea::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+
+.lucide, [class^="lucide-"] {
+  color: currentColor; 
+}
+
+.dark .text-gray-300 {
+  color: hsl(var(--muted-foreground)); 
+}
+
+.dark .text-muted-foreground {
+  color: hsl(var(--muted-foreground)) !important; 
+}
+.dark .text-card-foreground {
+  color: hsl(var(--card-foreground)) !important;
+}
+.dark .border-border {
+  border-color: hsl(var(--border)) !important;
+}
+.dark .bg-background {
+  background-color: hsl(var(--background)) !important;
+}
+.dark .bg-card {
+  background-color: hsl(var(--card)) !important;
+}
+.dark .bg-input {
+  background-color: hsl(var(--input)) !important;
+}
+
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
