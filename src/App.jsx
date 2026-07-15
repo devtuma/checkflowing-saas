@@ -25,6 +25,7 @@ import { useTrial } from '@/hooks/useTrial.jsx';
 import { runFullDiagnostics, getHealthStatus } from '@/lib/supabaseConnectionDiagnostics';
 import { retryConnection } from '@/lib/supabaseClient';
 import LoginWhiteLabel from '@/pages/LoginWhiteLabel';
+import DebugLogin from '@/pages/DebugLogin';
 import TrialBanner, { TrialStatusMini } from '@/components/TrialBanner';
 import PainelAdministrador from '@/components/PainelAdministrador';
 import PainelOperador from '@/components/PainelOperador';
@@ -169,6 +170,10 @@ function App() {
   }
 
   // Login White-Label
+  if (window.location.pathname === '/debug') {
+    return <DebugLogin />;
+  }
+
   if (showLogin && !isAuthenticated) {
     return <LoginWhiteLabel />;
   }
