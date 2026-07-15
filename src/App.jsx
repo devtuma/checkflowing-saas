@@ -29,7 +29,7 @@ import TrialBanner, { TrialStatusMini } from '@/components/TrialBanner';
 import PainelAdministrador from '@/components/PainelAdministrador';
 import PainelOperador from '@/components/PainelOperador';
 import SelecionarAtividade from '@/components/SelecionarAtividade';
-import { tenantService } from '@/lib/tenantService';
+import tenantService from '@/lib/tenantService';
 
 function App() {
   const {
