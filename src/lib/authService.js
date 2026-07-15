@@ -35,9 +35,9 @@ export const login = async (email, senha) => {
       return { success: false, error: userError.message };
     }
 
-    // 2. Verificar senha (comparação direta para demo - em produção use hash)
-    // Para usar hash: verificar com crypto.subtle.digest
-    const senhaValida = usuario.senha_hash === senha;
+    // 2. Verificar senha (hash SHA256)
+    const senhaHash = await hashSenha(senha);
+    const senhaValida = usuario.senha_hash === senhaHash;
 
     if (!senhaValida) {
       return { success: false, error: 'Senha incorreta' };
