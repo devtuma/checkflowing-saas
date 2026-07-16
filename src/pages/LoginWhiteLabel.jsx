@@ -17,7 +17,7 @@ import { useAuth } from '@/hooks/useAuth.jsx';
 import { useTenant } from '@/hooks/useTenant.jsx';
 import { supabase } from '@/lib/supabaseClient';
 import { hashSenha } from '@/lib/authService';
-import { Eye, EyeOff, Loader2, ShieldCheck, Wifi, WifiOff, User, Mail, Building } from 'lucide-react';
+import { Eye, EyeOff, Loader2, ShieldCheck, Wifi, WifiOff, User, Mail, Building, LogOut } from 'lucide-react';
 import { testConnection } from '@/lib/supabaseClient';
 
 const LoginWhiteLabel = () => {
@@ -53,6 +53,12 @@ const LoginWhiteLabel = () => {
       }
     }
   }, [isAuthenticated]);
+
+  // Função de logout
+  const handleLogout = () => {
+    localStorage.removeItem('checkflowing_session');
+    window.location.reload();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();

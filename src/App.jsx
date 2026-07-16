@@ -25,6 +25,7 @@ import { useTrial } from '@/hooks/useTrial.jsx';
 import { runFullDiagnostics, getHealthStatus } from '@/lib/supabaseConnectionDiagnostics';
 import { retryConnection } from '@/lib/supabaseClient';
 import LoginWhiteLabel from '@/pages/LoginWhiteLabel';
+import SessaoAtiva from '@/pages/SessaoAtiva';
 import DebugLogin from '@/pages/DebugLogin';
 import TrialBanner, { TrialStatusMini } from '@/components/TrialBanner';
 import PainelAdministrador from '@/components/PainelAdministrador';
@@ -186,6 +187,19 @@ function App() {
   // Login White-Label
   if (window.location.pathname === '/debug') {
     return <DebugLogin />;
+  }
+
+  // Página de debug
+  if (window.location.pathname === '/logout' || window.location.pathname === '/sair') {
+    // Limpar sessão e voltar pro login
+    localStorage.removeItem('checkflowing_session');
+    window.location.href = '/';
+    return null;
+  }
+
+  // Se está autenticado e está na raiz, mostrar tela de sessão
+  if (isAuthenticated && window.location.pathname === '/') {
+    return <SessaoAtiva />;
   }
 
   if (showLogin && !isAuthenticated) {
