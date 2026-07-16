@@ -159,6 +159,20 @@ function App() {
     setModoAtual(novoModo);
   }, [setModoAtual, setAtividadeSelecionadaParaManutentor]);
 
+  // Redirecionar baseado no role após login
+  useEffect(() => {
+    if (isAuthenticated && usuario) {
+      if (usuario.role === 'admin') {
+        setModoAtual('admin');
+        // Marcar admin logado no estado antigo para compatibilidade
+        window.dispatchEvent(new CustomEvent('checkflowing:admin-logado', { detail: true }));
+      } else {
+        // Operador vai pra seleção de hubs
+        setModoAtual('selecao');
+      }
+    }
+  }, [isAuthenticated, usuario, setModoAtual]);
+
   // Loading inicial
   if (carregandoDados || executandoDiagnostico) {
     return (
